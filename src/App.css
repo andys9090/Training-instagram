@@ -1,0 +1,111 @@
+.App {
+  text-align: center;
+}
+
+.App.App-Header {
+  margin: 500px;
+  background-color: white!important;
+}
+.App.Input-FillBar {
+    margin-left: 200px;
+}
+.classes.grow {
+  margin-left: 200px;
+}
+
+.profile-container {
+  width: 750px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-container .header-container {
+  display: flex;
+}
+
+.profile-container .avatar {
+  width: 150px;
+  height: 150px;
+  margin: 45px;
+}
+.profile-container .profile-name {
+  font-size: 28px;
+}
+
+.profile-container .detail {
+  
+  display: flex;
+  align-items: center;
+}
+.profile-container .detail-container{
+  padding: 45px;
+}
+.profile-container .button {
+  margin-left: 20px;
+}
+.profile-container .follower {
+  align-items: center;
+  display: flex;
+ 
+}
+.profile-container .posting {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+.profile-container .post {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+.profile-container .post-button {
+  background-color: blue;
+  color: white;
+}
+.profile-container .post-button:hover {
+  background-color: rgb(36, 36, 255);
+}
+
+
+.cards {
+  margin: 0 auto;
+  width: 750px;
+  display: flex;
+}
+
+
+.liked {
+  color: red;
+}
+.user-container{
+  flex-direction: column;
+}
+.user-container .User-info {
+  
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+.User-info .use-space {
+  align-items: center;
+  display: flex;
+  margin: 10px;
+}
+.User-info .user-button {
+  color:blue;
+  margin: '0 auto';
+}
+.User-info .Avatar {
+  width: 150px;
+  height: 150px;
+  margin: 45px;
+}
+
+.User-info .Button {
+  padding: 40px;
+}
+.follow {
+  color: blue;
+}
