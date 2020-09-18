@@ -51,14 +51,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Comment = (props) => {
-  const { username, comment, like, onDeleteClick, onCommentLikeClick} = props;
+  const { username, comment, like, onDeleteClick, onCommentLikeClick } = props;
   return (
     <Box display="flex" alignItems="center" justifyContent="space-between">
       <Typography>
         <b>{username}</b> {comment}
       </Typography>
       <Box>
-        <LikeComponent  liked={like} onLikeClick={onCommentLikeClick}/>
+        <LikeComponent liked={like} onLikeClick={onCommentLikeClick} />
         <IconButton onClick={onDeleteClick}>
           <TrashIcon />
         </IconButton>
@@ -70,7 +70,7 @@ const Comment = (props) => {
 const data = [{ username: "andy", comment: "hello", like: true }];
 
 export default function RecipeReviewCard(props) {
-  const { username, image, like, onPostLikeClick } = props;
+  const { username, image, like, onPostLikeClick, onDoubleClick, onPostDelete } = props;
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -102,14 +102,14 @@ export default function RecipeReviewCard(props) {
   }
 
   function handleLikeComment(index) {
-    const newCommentList = commentList.map ((element, i) => {
-      if(i === index) {
+    const newCommentList = commentList.map((element, i) => {
+      if (i === index) {
         return {
           ...element,
           like: !element.like,
-        }
-      } else return element
-    })
+        };
+      } else return element;
+    });
 
     setCommentList(newCommentList);
   }
@@ -123,15 +123,19 @@ export default function RecipeReviewCard(props) {
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
+          <IconButton onClick={onPostDelete}>
+            <TrashIcon />
           </IconButton>
         }
         title={username}
       />
-      <CardMedia className={classes.media} image={image} />
+      <CardMedia
+        className={classes.media}
+        image={image}
+        onDoubleClick={onDoubleClick}
+      />
       <CardActions disableSpacing>
-        <LikeComponent liked={like} onLikeClick={onPostLikeClick}/>
+        <LikeComponent liked={like} onLikeClick={onPostLikeClick} />
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>

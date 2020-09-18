@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -55,16 +55,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ScrollableTabsButtonForce() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
   const data = [
     { url: "https://picsum.photos/200/300", likes: 30 },
     { url: "https://picsum.photos/200/301", likes: 33 },
   ];
+  const [posts, setPosts] = React.useState(data);
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+  
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  function handleDelete(index) {
+    const selectedPost = [];
+    for (let i = 0; i < posts.length; i++) {
+      if (i !== index) {
+        selectedPost.push(posts[i]);
+      }
+    }
+    setPosts(selectedPost);
+  }
 
   return (
     <div className={classes.root}>
@@ -81,7 +92,7 @@ export default function ScrollableTabsButtonForce() {
         <Tab label="ditandai" {...a11yProps(3)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Posting data={data} />
+        <Posting data={posts} postDelete={(index) => handleDelete(index)} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <IGTV />

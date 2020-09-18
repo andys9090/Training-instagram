@@ -16,6 +16,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import RecipeReviewCard from "../Home/cards";
+import { YoutubeSearchedForTwoTone } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -28,16 +29,18 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
     display: "flex",
+    textDecoration: "none"
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    display: "none",
+    display: "block",
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
     color: "black",
+    textDecoration:"none"
   },
   search: {
     position: "relative",
@@ -108,6 +111,10 @@ export default function Header() {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleSearchMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  }
+
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -164,6 +171,17 @@ export default function Header() {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
+      <MenuItem onClick={handleSearchMenuOpen}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Search</p>
+      </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -184,6 +202,10 @@ export default function Header() {
 
   function handleProfileClick() {
     history.push("/profile");
+  }
+
+  function handleSearchClick() {
+    history.push("/search")
   }
 
   return (
@@ -217,6 +239,9 @@ export default function Header() {
                 <Badge badgeContent={4} color="secondary">
                   <MailIcon />
                 </Badge>
+              </IconButton>
+              <IconButton onClick={handleSearchClick}>
+                <YoutubeSearchedForTwoTone />
               </IconButton>
               <IconButton aria-label="show 17 new notifications">
                 <Badge badgeContent={17} color="secondary">

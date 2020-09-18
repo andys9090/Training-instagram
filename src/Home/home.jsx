@@ -7,6 +7,8 @@ import Story from "./Story";
 const data = [
   { image: "https://picsum.photos/200/300", username: "abcsbacb", like: false },
   { image: "https://picsum.photos/200/301", username: "data ke 2", like: true },
+  { image: "https://picsum.photos/200/302", username: "data ke 2", like: true },
+  { image: "https://picsum.photos/200/303", username: "data ke 2", like: true },
 ];
 
 // const usersData = ;
@@ -21,7 +23,7 @@ const dataStory = [
 const HomePage = () => {
   const [stories, setStories] = useState(dataStory);
   const [posts, setPosts] = useState(data);
-  // console.log(Stories)
+
   function handleClick(id) {
     const newStoriesData = stories.filter((element) => element.id !== id);
     setStories(newStoriesData);
@@ -51,14 +53,6 @@ const HomePage = () => {
       else if (!element.followed) return element;
       else return false;
     });
-    // for (let i=0; i < users.length; i++) {
-    //   if (i !== index) {
-    //     newUsersData.push(users[i]);
-    //   }
-    //   else if (users[i].followed === false) {
-    //     newUsersData.push(users[i]);
-    //   }
-    // }
     setUsers(newUsersData);
   }
 
@@ -69,21 +63,23 @@ const HomePage = () => {
           return {
             ...element,
             like: !element.like,
-          }
-        } else return element
-      })
-    })
+          };
+        } else return element;
+      });
+    });
+  }
 
-    // const newPosts = posts.map((element, i) => {
-    //   if (i === index) {
-    //     return {
-    //       ...element,
-    //       like: !element.like,
-    //     };
-    //   } else return element;
-    // });
-
-    // setPosts(newPosts);
+  
+  function handleDeletePost(index) {
+    const selectedCard = [];
+    for (let i = 0; i < posts.length; i++) {
+      if (i !== index) {
+        selectedCard.push(posts[i]);
+      }else if(posts[i].like === true) {
+        selectedCard.push(posts[i]);
+      }
+    }
+    setPosts(selectedCard);
   }
 
   return (
@@ -111,7 +107,10 @@ const HomePage = () => {
               image={element.image}
               username={element.username}
               like={element.like}
+              post={element.posts}
+              onDoubleClick={() => handleLikePost(index)}
               onPostLikeClick={() => handleLikePost(index)}
+              onPostDelete={() => handleDeletePost(index)}
             />
           ))}
         </Box>
